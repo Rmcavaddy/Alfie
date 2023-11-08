@@ -1,0 +1,66 @@
+Mr.Pennysworth Research
+10/23/2023
+
+The following modules have specific security considerations:
+
+*base64: base64 security considerations in RFC 4648
+
+*cgi: CGI security considerations
+
+*hashlib: all constructors take a “usedforsecurity” keyword-only argument disabling known insecure and blocked algorithms
+
+*http.server is not suitable for production use, only implementing basic security checks. See the security considerations.
+
+*logging: Logging configuration uses eval()
+
+*multiprocessing: Connection.recv() uses pickle
+
+*pickle: Restricting globals in pickle
+
+*random shouldn’t be used for security purposes, use secrets instead
+
+*shelve: shelve is based on pickle and thus unsuitable for dealing with untrusted sources
+
+*ssl: SSL/TLS security considerations
+
+*subprocess: Subprocess security considerations
+
+*tempfile: mktemp is deprecated due to vulnerability to race conditions
+
+*xml: XML vulnerabilities
+
+*zipfile: maliciously prepared .zip files can cause disk volume exhaustion
+
+The -I command line option can be used to run Python in isolated mode. When it cannot be used, the -P option or the PYTHONSAFEPATH environment variable can be used to not prepend a potentially unsafe path to sys.path such as the current directory, the script’s directory or an empty string.
+
+
+Cryptographic Services
+The modules described in this chapter implement various algorithms of a cryptographic nature. They are available at the discretion of the installation. On Unix systems, the crypt module may also be available. Here’s an overview:
+
+*hashlib — Secure hashes and message digests
+	+Hash algorithms
+	+Usage
+	+Constructors
+	+Attributes
+	+Hash Objects
+	+SHAKE variable length digests
+	+File hashing
+	+Key derivation
+	+BLAKE2
+		"Creating hash objects
+		"Constants
+		"Examples
+			'Simple hashing
+			'Using different digest sizes
+			'Keyed hashing
+			'Randomized hashing
+			'Personalization
+			'Tree mode
+		"Credits
+*hmac — Keyed-Hashing for Message Authentication
+*secrets — Generate secure random numbers for managing secrets
+	+Random numbers
+	+Generating tokens
+		"How many bytes should tokens use?
+	+Other functions
+	+Recipes and best practices
